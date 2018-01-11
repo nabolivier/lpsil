@@ -25,7 +25,6 @@ app.get('/login', function(req, res){
 
 app.post('/login', function(req, res){
     Console.log(req.body);
-    res.render('login');
 });
 
 app.get('/ping', function(req, res){
