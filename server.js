@@ -20,12 +20,16 @@ app.get('/', function(req, res){
 });
 
 app.get('/login', function(req, res){
-    Console.log(req.body);
+    Console.log(res.body);
     res.render('login');
 });
 
 app.get('/ping', function(req, res){
     res.send('pong');
+});
+
+app.get('/inscription', function(req, res){
+    res.render('inscription');
 });
 
 app.listen(process.env.PORT||1313);
