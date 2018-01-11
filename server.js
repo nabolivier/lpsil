@@ -8,7 +8,7 @@ var app = express();
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
-app.use(bodyParser.json({ "message" : "Hello world"}));
+app.use(bodyParser.urlencoded({ extended : false}));
 app.use(morgan('combined')); // Active le middleware de logging
 
 app.use(express.static(__dirname + '/public')); // Indique que le dossier /public contient des fichiers statiques (middleware chargé de base)
@@ -20,7 +20,11 @@ app.get('/', function(req, res){
 });
 
 app.get('/login', function(req, res){
-    Console.log(res.body);
+    res.render('login');
+});
+
+app.post('/login', function(req, res){
+    Console.log(req.body);
     res.render('login');
 });
 
