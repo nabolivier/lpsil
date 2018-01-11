@@ -18,6 +18,8 @@
     "express": "^4.13.3",
     "log4js": "^0.6.29",
     "morgan": "^1.6.1",
+    "mysql2": "^1.5.1",
+    "sequelize": "^4.31.0",
     "serve-favicon": "^2.3.0"
   }
 }

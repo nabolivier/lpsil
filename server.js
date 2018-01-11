@@ -15,6 +15,10 @@ app.use(express.static(__dirname + '/public')); // Indique que le dossier /publi
 
 logger.info('server start');
 
+var usercontroller = require("./controller/user");
+
+app.get('/create', usercontroller);
+
 app.get('/', function(req, res){
     res.redirect('/login');
 });
@@ -23,19 +27,12 @@ app.get('/login', function(req, res){
     res.render('login');
 });
 
-app.post('/login', function(req, res){
-    Console.log(req.body);
-});
-
 app.get('/ping', function(req, res){
     res.send('pong');
 });
 
-app.get('/inscription', function(req, res){
-    res.render('inscription');
-});
+var inscriptioncontroller = require('./controller/inscription');
+
+app.get('/inscription', inscriptioncontroller);
 
 app.listen(process.env.PORT||1313);
-
-
-
