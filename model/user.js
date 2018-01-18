@@ -1,10 +1,18 @@
 var db = require("../db.js");
 var Sequelize = require('sequelize');
 
-const user = db.define('user', {
-    username: Sequelize.STRING,
-    password: Sequelize.STRING
-});
+const User = db.define('user', {
+        name: Sequelize.STRING,
+        password: Sequelize.STRING,
+        admin: Sequelize.INTEGER
+    }
+    , {
+        tableName : 'user',
+        deletedAt : false,
+        freezeTableName: true
+    });
+
+User.sync();
 
 db.authenticate()
     .then(function () {
@@ -15,4 +23,4 @@ db.authenticate()
     })
     .done();
 
-module.exports = user;
+module.exports = User;

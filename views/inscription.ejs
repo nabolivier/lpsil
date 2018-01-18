@@ -1,6 +1,25 @@
 <% var title = 'Formulaire inscription' %>
 <% include head %>
 
-<% result %>
+<h1 style="color: #4095ff">Inscription</h1>
+
+<form method="post" action="/inscription">
+    <table>
+        <tr>
+            <td><label>Username :</label></td>
+            <td><input type="text" name="username"></td>
+        </tr>
+        <tr>
+            <td><label>Password :</label></td>
+            <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="S'inscrire"></td>
+        </tr>
+    </table>
+</form>
+
+<br><br><br>
+Déjà inscrit ? <a href="login" style="color: #4095ff">Se connecter.</a>
 
 <% include foot %>

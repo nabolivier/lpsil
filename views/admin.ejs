@@ -1,0 +1,57 @@
+<% var title = "Page d'administration" %>
+<% include head.ejs %>
+
+<h1 style="color: #4095ff">Panneau d'administration</h1>
+
+<button onclick="removeProducts()">Supprimer les produits sélectionnés</button>
+<div class="button"><a href="ajouter" style="margin-left: 10px;color:white;text-decoration: none;">Ajouter un produit</a></div>
+<br><br><br>
+
+<form name="formRemove" id="formRemove" method="post" action="/admin">
+
+    <div id="products">
+        <% for(var i=0; i<list.length; i++) {%>
+        <div class="bloc" id="bloc<%= i %>">
+            <h1><%= list[i].name %><input id="ckbox<%= i %>" type="checkbox" style="margin-top: -45px;margin-left: 85%;"></h1>
+            <div class="desc">
+                <p><%= list[i].description %></p>
+                <p>Prix : <%= list[i].price %>€</p>
+            </div>
+        </div>
+        <br><br>
+        <% } %>
+    </div>
+</form>
+<% include foot.ejs %>
+
+<script>
+
+    var liste = [];
+    <% for(i=0 ; i < list.length ; i++){
+    %>liste.push("<%= list[i].name %>");
+    <%}%>
+
+    var arraySelected = [];//Passer à removeProducts
+
+    function removeProducts(){
+        getSelectedProducts();
+        if(arraySelected.length > 0){
+            document['formRemove'].action = "/supprimer?len=" + arraySelected.length + "&";
+            for(i = 0 ; i < arraySelected.length ; i++) {
+                document['formRemove'].action += "p" + i + "=" + arraySelected[i];
+                if(i < arraySelected.length-1){
+                    document['formRemove'].action += "&";
+                }
+            }
+            document.getElementById("formRemove").submit();
+        }
+    }
+    function getSelectedProducts(){
+        for(i = 0 ; i < liste.length ; i++){
+            var tmpCkbox = document.getElementById("ckbox" + i);
+            if(tmpCkbox.checked){
+                arraySelected.push(i);
+            }
+        }
+    }
+</script>

@@ -1,0 +1,96 @@
+<% var title = "Page d'accueil" %>
+<% include head.ejs %>
+
+<div style="color: #4095ff" id="panier">
+    <h1 class="top">Votre panier :</h1><br>
+    <h1 class="bottom">Total : 0€</h1>
+</div>
+
+<h1 style="color: #4095ff">Bienvenue</h1>
+
+<h3 style="color: #4095ff">Produits disponibles :</h3>
+
+<div id="products">
+    <% for(var i=0; i<list.length; i++) {%>
+    <div class="bloc">
+        <h1><%= list[i].name %></h1>
+        <div class="desc">
+            <p><%= list[i].description %></p>
+            <p>Prix : <%= list[i].price %>€</p>
+            <p><a id="remove<%= i %>" style="visibility: hidden" href="javascript:RemoveFromCart(<%= i %>)">Retirer du panier</a><a id="add<%= i %>" style="margin-left: 45%;" href="javascript:AddToCart(<%= i %>)">Ajouter au panier</a></p>
+        </div>
+    </div>
+    <br><br>
+    <% } %>
+</div>
+
+<% include foot.ejs %>
+
+<script>
+
+    var cart = []; // Panier mis à jour avec les actions de l'utilisateur
+    var liste = [];
+    <% for(i=0 ; i < list.length ; i++){
+        %>liste.push("<%= list[i].name %>");
+    <%}%>
+    var listePrix = [];
+    <% for(i=0 ; i < list.length ; i++){
+        %>listePrix.push("<%= list[i].price %>");
+    <%}%>
+    var divCart = document.getElementById("panier");
+    function AddToCart(i){
+        if(i>-1 && i < liste.length){
+            if(cart[i] === undefined){
+                cart[i] = liste[i] + " x 1";
+                document.getElementById("remove" + i).style = "visibility: visible";
+            }else{
+                var nbAjouts = cart[i].slice(-1);
+                if(nbAjouts < 9) {
+                    nbAjouts++;
+                    if(nbAjouts === 9){
+                        document.getElementById("add" + i).style = "margin-left: 45%; visibility: hidden";
+                    }
+                }
+                cart[i] = liste[i] + " x " + nbAjouts;
+            }
+        }
+        WriteDivCart();
+    }
+
+    function RemoveFromCart(i){
+        if(i>-1 && i < liste.length){
+            if(cart[i] !== undefined){
+                var nbAjouts = cart[i].slice(-1);
+                nbAjouts--;
+                if(nbAjouts === 0){
+                    cart[i] = undefined;
+                    document.getElementById("remove" + i).style = "visibility: hidden";
+                }else {
+                    cart[i] = cart[i].slice(0, cart[i].length - 1) + nbAjouts;
+                    document.getElementById("add" + i).style = "margin-left: 45%; visibility: visible";
+                }
+            }
+        }
+        WriteDivCart();
+    }
+
+    function WriteDivCart(){ // Réécrit et affiche le panier
+        divCart.innerHTML = "<h1 class='top'>Votre panier :</h1><br>"
+        for(j=0 ; j<liste.length ; j++){
+            if(cart[j] !== undefined){
+                    divCart.innerHTML += "<li>" + cart[j] + "</li>";
+            }
+        }
+
+        divCart.innerHTML += "<br>";
+
+        var total = 0;
+        for(k = 0 ; k < cart.length ; k++){
+            if(cart[k] !== undefined) {
+                var nbAjouts = cart[k].slice(-1);
+                total += nbAjouts * listePrix[k];
+            }
+        }
+        divCart.innerHTML += "<h1 class='bottom'>Total : " + total + "€</h1>"
+    }
+</script>

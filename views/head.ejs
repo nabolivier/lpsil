@@ -13,6 +13,167 @@
         .success {
             color: green;
         }
+        input[type="checkbox"] {
+            appearance: none;
+            width: 40px;
+            height: 16px;
+            border: 1px solid #aaa;
+            border-radius: 2px;
+            background: #ebebeb;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: middle;
+            transition: background 0.3s;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"]:after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border: 1px solid #aaa;
+            border-radius: 2px;
+            transition: left 0.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        }
+
+        input[type="checkbox"]:checked {
+            background: #ff312c;
+            border-color: #ff312c;
+        }
+
+        input[type="checkbox"]:checked:after {
+            left: 23px;
+            border-color: #8daee5;
+        }
+
+        input[type="checkbox"]:hover:not(:checked):not(:disabled):after,
+        input[type="checkbox"]:focus:not(:checked):not(:disabled):after {
+            left: 0px;
+        }
+
+        input[type="checkbox"]:hover:checked:not(:disabled):after,
+        input[type="checkbox"]:focus:checked:not(:disabled):after {
+            left: 22px;
+        }
+
+        input[type="checkbox"]:disabled {
+            opacity: 0.5;
+        }
+        .bloc {
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -moz-box-shadow: 0 0 20px #555;
+            -webkit-box-shadow: 0 0 20px #555;
+            box-shadow: 0 0 20px #555;
+            width:400px;
+            margin-left: 25px;
+        }
+        .bloc h1 {
+            margin:0;
+            padding:5px;
+            font-size:1.5em;
+            color:#fff;
+            background-color: #4b63d4;
+            border:1px solid #8E98A4;
+            border-bottom:0;
+            -webkit-border-radius: 10px 10px 0 0;
+            -moz-border-radius: 10px 10px 0 0;
+            border-radius: 10px 10px 0 0;
+        }
+        .desc{
+            padding-bottom: 2px;
+            margin-left: 5px;
+        }
+        #panier{
+            position: fixed;
+            top: 70px;
+            right: 30px;
+            margin: 0 auto;
+            width: 200px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -moz-box-shadow: 0 0 20px #555;
+            -webkit-box-shadow: 0 0 20px #555;
+            box-shadow: 0 0 20px #555;
+        }
+        #panier .top {
+            margin:0;
+            padding:5px;
+            font-size:1.5em;
+            color:#fff;
+            background-color: #4b63d4;
+            border:1px solid #8E98A4;
+            border-bottom:0;
+            -webkit-border-radius: 10px 10px 0 0;
+            -moz-border-radius: 10px 10px 0 0;
+            border-radius: 10px 10px 0 0;
+        }
+        #panier .bottom {
+            margin:0;
+            padding:5px;
+            font-size:1.5em;
+            color:#fff;
+            background-color: #4b63d4;
+            border:1px solid #8E98A4;
+            border-bottom:0;
+            -webkit-border-radius: 0 0 10px 10px;
+            -moz-border-radius: 0 0 10px 10px;
+            border-radius: 0 0 10px 10px;
+        }
+        #panier li{
+            margin-left:15px;
+            font-size: 1.2em;
+        }
+        input[type=button], input[type=submit], button, .button {
+            padding: 5px 15px;
+            margin: 3px 4px;
+            display: inline-block;
+            color: #ffffff;
+            font-size: 15px;
+            cursor: pointer;
+            background: #4095ff;
+            background: linear-gradient(top, #4095ff 0%, #277ce6 100%);
+            background: -moz-linear-gradient(top, #4095ff 0%, #277ce6 100%);
+            background: -webkit-linear-gradient(top, #4095ff 0%, #277ce6 100%);
+            background: -o-linear-gradient(top, #4095ff 0%, #277ce6 100%);
+            border: 1px solid #338bf6;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -o-border-radius: 5px;
+            box-shadow:0px 0px 2px 1px rgba(0, 0, 0, 0.25), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+            -moz-box-shadow:0px 0px 2px 1px rgba(0, 0, 0, 0.25), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+            -webkit-box-shadow:0px 0px 2px 1px rgba(0, 0, 0, 0.25), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+            -o-box-shadow:0px 0px 2px 1px rgba(0, 0, 0, 0.25), inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25);
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.50);
+        }
+        input[type=button]:hover, input[type=submit]:hover, button:hover, .button:hover {
+            background: linear-gradient(top, #5aafff 0%, #4095ff 100%);
+            background: -moz-linear-gradient(top, #5aafff 0%, #4095ff 100%);
+            background: -webkit-linear-gradient(top, #5aafff 0%, #4095ff 100%);
+            background: -o-linear-gradient(top, #5aafff 0%, #4095ff 100%);
+        }
+        input[type=button]:active, input[type=submit]:active, button:active, .button:active{
+            opacity:0.8;
+        }
+        input[type=text], input[type=password], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
     </style>
 </head>
 <body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>

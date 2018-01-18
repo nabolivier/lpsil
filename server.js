@@ -24,15 +24,50 @@ app.get('/', function(req, res){
 });
 
 app.get('/login', function(req, res){
-    res.render('login');
+    res.render('login', {
+        "notfound": "hidden"
+    });
 });
 
 app.get('/ping', function(req, res){
     res.send('pong');
 });
 
-var inscriptioncontroller = require('./controller/inscription');
+app.get('/inscription', function (req, res) {
+    res.render('inscription')
+});
 
-app.get('/inscription', inscriptioncontroller);
+var logincontroller = require('./controller/login');
+app.post('/login', logincontroller);
+
+var inscriptioncontroller = require('./controller/inscription');
+app.post('/inscription', inscriptioncontroller);
+
+var accueilcontroller = require('./controller/accueil');
+app.get('/accueil', accueilcontroller);
+
+var admincontroller = require('./controller/admin');
+app.get('/admin', admincontroller);
+
+var removeproductscontroller = require('./controller/supprimer');
+app.post('/supprimer', removeproductscontroller);
+
+app.get('/ajouter', function (req, res) {
+    res.render('ajouter');
+});
+
+var addproductscontroller = require('./controller/ajouter');
+app.post('/ajouter', addproductscontroller);
+
+// --------------------------
+// Autres exemples de post
+/*app.get('/params/:par1/:par2', function (req, res) {
+    console.log(req.params);
+});
+
+app.get('/query', function (req, res) {
+    console.log(req.query);
+});*/
+// --------------------------
 
 app.listen(process.env.PORT||1313);

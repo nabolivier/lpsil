@@ -1,0 +1,28 @@
+<% var title = "Ajout d'un nouveau produit" %>
+<% include head %>
+
+<h1 style="color: #4095ff">Ajouter un nouveau produit</h1>
+
+<form method="post" action="/ajouter">
+
+    <table>
+        <tr>
+            <td><label style="font-size: 175%">Nom :</label></td>
+            <td><input type="text" name="name"></td>
+        </tr>
+        <tr>
+            <td><label style="font-size: 175%">Description :</label></td>
+            <td><input type="text" name="desc"></td>
+        </tr>
+        <tr>
+            <td><label style="font-size: 175%">Prix :</label></td>
+            <td><input name="price" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Ajouter"></td>
+        </tr>
+    </table>
+
+</form>
+
+<% include foot %>
